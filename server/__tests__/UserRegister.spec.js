@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
 
-it('returns 200 OK when signup request is valid', () => {
+it('returns 200 OK when signup request is valid', (done) => {
   request(app)
     .post('/api/1.0/users')
     .send({
@@ -9,5 +9,5 @@ it('returns 200 OK when signup request is valid', () => {
       email: 'user1@mail.com',
       password: 'P4ssword',
     })
-    .expect(200);
+    .expect(200, done);
 });
