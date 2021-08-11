@@ -4,7 +4,7 @@
     "username": "my-db-user",
     "password": "db-p4ss",
     "dialect": "sqlite",
-    "storage": ":memory:",
+    "storage": "./database.sqlite",
     "logging": false
   }
 }
