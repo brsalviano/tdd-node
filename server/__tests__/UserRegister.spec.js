@@ -80,26 +80,8 @@ describe('User Registration', () => {
       password: 'P4ssword',
     });
     const body = response.body;
-    //Devemos ter cuidado com Object.keys na comparação. Pois em alguns casos, se achave for
-    //numérica por exemplo, a ordem das chaves é modificada.
     expect(Object.keys(body.validationErrors)).toEqual(['username', 'email']);
   });
-
-  // it.each([
-  //   ['username', 'Username cannot be null'],
-  //   ['email', 'E-mail cannot be null'],
-  //   ['password', 'Password cannot be null'],
-  // ])('when %s is null %s is received', async (field, expectedMessage) => {
-  //   const user = {
-  //     username: 'user1',
-  //     email: 'user1@mail.com',
-  //     password: 'p4ssword',
-  //   };
-  //   user[field] = null;
-  //   const response = await postUser(user);
-  //   const body = response.body;
-  //   expect(body.validationErrors[field]).toBe(expectedMessage);
-  // });
 
   it.each`
     field         | expectedMessage
