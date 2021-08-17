@@ -17,8 +17,12 @@ const validUser = {
   password: 'P4ssword',
 };
 
-const postUser = (user = validUser) => {
-  return request(app).post('/api/1.0/users').send(user);
+const postUser = (user = validUser, options = {}) => {
+  const agent = request(app).post('/api/1.0/users');
+  if (options.language) {
+    agent.set('Accept-Language', options.language);
+  }
+  return agent.send(user);
 };
 
 describe('User Registration', () => {
@@ -140,10 +144,6 @@ describe('User Registration', () => {
 });
 
 describe('Internationalization', () => {
-  const postUser = (user = validUser) => {
-    return request(app).post('/api/1.0/users').set('Accept-Language', 'pt-br').send(user);
-  };
-
   const username_null = 'Username não pode ser nulo';
   const username_size = 'Precisa ter entre 4 e 32 caracteres';
   const email_null = 'E-mail não pode ser nulo';
@@ -177,14 +177,14 @@ describe('Internationalization', () => {
       password: 'p4ssword',
     };
     user[field] = value;
-    const response = await postUser(user);
+    const response = await postUser(user, { language: 'pt-BR' });
     const body = response.body;
     expect(body.validationErrors[field]).toBe(expectedMessage);
   });
 
   it(`returns ${email_inuse} when same email is already in use`, async () => {
     await User.create({ ...validUser });
-    const response = await postUser();
+    const response = await postUser({ ...validUser }, { language: 'pt-BR' });
     expect(response.body.validationErrors.email).toBe(email_inuse);
   });
 });
