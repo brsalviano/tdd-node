@@ -153,6 +153,8 @@ describe('Internationalization', () => {
   const password_pattern = 'Password precisa ter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número';
   const email_inuse = 'E-mail em uso';
 
+  const user_create_success = 'Usuário criado';
+
   it.each`
     field         | value               | expectedMessage
     ${'username'} | ${null}             | ${username_null}
@@ -186,5 +188,10 @@ describe('Internationalization', () => {
     await User.create({ ...validUser });
     const response = await postUser({ ...validUser }, { language: 'pt-BR' });
     expect(response.body.validationErrors.email).toBe(email_inuse);
+  });
+
+  it(`return success message of ${user_create_success} when signup request is valid and language is set as portuguese`, async () => {
+    const response = await postUser({ ...validUser }, { language: 'pt-BR' });
+    expect(response.body.message).toBe(user_create_success);
   });
 });

@@ -6,5 +6,6 @@
   "password_null": "Password não pode ser nulo",
   "password_size": "Password precisa ter pelo menos 6 caracteres",
   "password_pattern": "Password precisa ter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número",
-  "email_inuse": "E-mail em uso"
+  "email_inuse": "E-mail em uso",
+  "user_create_success": "Usuário criado"
 }
