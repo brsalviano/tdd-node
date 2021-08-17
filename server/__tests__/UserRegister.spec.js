@@ -84,15 +84,22 @@ describe('User Registration', () => {
   });
 
   it.each`
-    field         | value              | expectedMessage
-    ${'username'} | ${null}            | ${'Username cannot be null'}
-    ${'username'} | ${'usr'}           | ${'Must have min 4 and max 32 characters'}
-    ${'username'} | ${'a'.repeat(33)}  | ${'Must have min 4 and max 32 characters'}
-    ${'email'}    | ${null}            | ${'E-mail cannot be null'}
-    ${'email'}    | ${'mail.com'}      | ${'E-mail is not valid'}
-    ${'email'}    | ${'user.mail.com'} | ${'E-mail is not valid'}
-    ${'email'}    | ${'user@email'}    | ${'E-mail is not valid'}
-    ${'password'} | ${null}            | ${'Password cannot be null'}
+    field         | value               | expectedMessage
+    ${'username'} | ${null}             | ${'Username cannot be null'}
+    ${'username'} | ${'usr'}            | ${'Must have min 4 and max 32 characters'}
+    ${'username'} | ${'a'.repeat(33)}   | ${'Must have min 4 and max 32 characters'}
+    ${'email'}    | ${null}             | ${'E-mail cannot be null'}
+    ${'email'}    | ${'mail.com'}       | ${'E-mail is not valid'}
+    ${'email'}    | ${'user.mail.com'}  | ${'E-mail is not valid'}
+    ${'email'}    | ${'user@email'}     | ${'E-mail is not valid'}
+    ${'password'} | ${null}             | ${'Password cannot be null'}
+    ${'password'} | ${'p4ssw'}          | ${'Password must be at least 6 characters'}
+    ${'password'} | ${'allowercase'}    | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
+    ${'password'} | ${'ALLUPPETERCASE'} | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
+    ${'password'} | ${'1234567890'}     | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
+    ${'password'} | ${'lowerandUPPER'}  | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
+    ${'password'} | ${'lowerand12345'}  | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
+    ${'password'} | ${'UPPER12345'}     | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
   `('returns $expectedMessage when $field is $value', async ({ field, expectedMessage, value }) => {
     const user = {
       username: 'user1',
