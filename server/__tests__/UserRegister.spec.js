@@ -148,9 +148,9 @@ describe('Internationalization', () => {
   const username_size = 'Precisa ter entre 4 e 32 caracteres';
   const email_null = 'E-mail não pode ser nulo';
   const email_invalid = 'E-mail não é válido';
-  const password_null = 'Password não pode ser nulo';
-  const password_size = 'Password precisa ter pelo menos 6 caracteres';
-  const password_pattern = 'Password precisa ter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número';
+  const password_null = 'A senha não pode ser nula';
+  const password_size = 'A senha precisa ter pelo menos 6 caracteres';
+  const password_pattern = 'A senha precisa ter pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número';
   const email_inuse = 'E-mail em uso';
 
   const user_create_success = 'Usuário criado';
