@@ -9,5 +9,5 @@ const save = async (body) => {
 
 const findByEmail = async (email) => {
   return User.findOne({ where: { email: email } });
-}
+};
 module.exports = { save, findByEmail };
