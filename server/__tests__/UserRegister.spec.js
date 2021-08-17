@@ -112,14 +112,10 @@ describe('User Registration', () => {
     expect(body.validationErrors[field]).toBe(expectedMessage);
   });
 
-  // it('returns size validation error when username is less than 4 characters', async () => {
-  //   const user = {
-  //     username: 'usr',
-  //     email: 'user1@mail.com',
-  //     password: 'P4ssword',
-  //   };
-  //   const response = await postUser(user);
-  //   const body = response.body;
-  //   expect(body.validationErrors.username).toBe('Must have min 4 and max 32 characters');
-  // });
+  it('returns Email in use when same email is already in use', async () => {
+    await User.create({ ...validUser });
+    const response = await postUser();
+
+    expect(response.body.validationErrors.email).toBe('E-mail in use');
+  });
 });
