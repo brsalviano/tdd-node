@@ -23,7 +23,7 @@ User.init(
     },
     activationToken: {
       type: Sequelize.STRING,
-    }
+    },
   },
   {
     sequelize,
